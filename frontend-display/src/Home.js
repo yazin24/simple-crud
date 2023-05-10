@@ -8,6 +8,7 @@ const Home = () => {
   // const [lastName, setLastName] = useState('');
   // const [age, setAge] = useState('');
   const [data, setData] = useState([]);
+  
 
 useEffect(() => {
   const fetchData = async () => {
@@ -29,10 +30,12 @@ const addPage = () => {
   navigate('/add')
 }
 
+
 const deleteEmployee = async (id) => {
     try {
        await axios.delete(`http://localhost:9000/employee/${id}`);
       alert('Employee has been deleted!')
+      window.location.reload();
       navigate('/')
     }catch(err) {
       console.error(err)
@@ -57,7 +60,7 @@ const deleteEmployee = async (id) => {
             <td>{item.firstName}</td>
             <td>{item.lastName}</td>
             <td>{item.age}</td>
-            <td><button className='actionButton'>Update</button><button className='actionButton' onClick={() => deleteEmployee(item.id)}>Delete</button></td>
+            <td><button className='actionButton' onClick={navigate(`/update/${item._id}`)}>Update</button><button className='actionButton' onClick={() => deleteEmployee(item._id)}>Delete</button></td>
           </tr>
           ))}
           
