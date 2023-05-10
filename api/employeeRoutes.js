@@ -31,6 +31,19 @@ router.get('/', async(req, res) => {
         console.error(err);
     }
 
-})
+});
+
+router.delete('/:id', async (req, res) => {
+    const { id } = req.params;
+  
+    try {
+      await employeeModel.findByIdAndDelete(id);
+      res.json({ message: 'Employee deleted successfully.' });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: 'An error occurred while deleting the employee.' });
+    }
+  });
+  
 
 export {router as employeeRouter}

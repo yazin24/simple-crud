@@ -29,6 +29,16 @@ const addPage = () => {
   navigate('/add')
 }
 
+const deleteEmployee = async (id) => {
+    try {
+       await axios.delete(`http://localhost:9000/employee/${id}`);
+      alert('Employee has been deleted!')
+      navigate('/')
+    }catch(err) {
+      console.error(err)
+    }
+}
+
   return (
     <div>
       <button className='addButton' onClick={addPage}>Add</button>
@@ -38,6 +48,7 @@ const addPage = () => {
             <th>First Name</th>
             <th>Last Name</th>
             <th>Age</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -46,6 +57,7 @@ const addPage = () => {
             <td>{item.firstName}</td>
             <td>{item.lastName}</td>
             <td>{item.age}</td>
+            <td><button className='actionButton'>Update</button><button className='actionButton' onClick={() => deleteEmployee(item.id)}>Delete</button></td>
           </tr>
           ))}
           

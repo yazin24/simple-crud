@@ -12,6 +12,8 @@ const Add = () => {
 
   const onSubmit = async (event) => {
 
+    event.preventDefault();
+
     try{
       await axios.post('http://localhost:9000/employee/add', {firstName, lastName, age});
       alert('Employee Has Been Added Successfully!')
@@ -26,11 +28,11 @@ const Add = () => {
     <div className='form'>
       <form onSubmit={onSubmit}>
       <label>Fist Name</label>
-      <input type='text'/>
+      <input type='text'onChange={(event) => setFirstName(event.target.value)}/>
       <label>Last Name</label>
-      <input type='text'/>
+      <input type='text' onChange={(event) => setLastName(event.target.value)}/>
       <label>Age</label>
-      <input type='number' className='age'/>
+      <input type='number' className='age' onChange={(event) => setAge(event.target.value)}/>
       <button type='submit' className='add'>Add</button>
       </form>
     </div>

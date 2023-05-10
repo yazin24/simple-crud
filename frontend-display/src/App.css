@@ -50,3 +50,6 @@ input {
 .age {
   width: 5rem;
 }
+.actionButton {
+  font-size: 10px;
+}
