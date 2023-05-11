@@ -4,6 +4,11 @@
 
 .addButton {
   width: 30rem;
+  background-color: blue;
+  color: #ffffff;
+  padding: 3px;
+  border-radius: 5px;
+  font-weight: bold;
 }
 table {
   border-collapse: collapse;
@@ -46,10 +51,27 @@ input {
 .add {
   margin-top: 1rem;
   width: 4rem;
+  background-color: blue;
+  color: #ffffff;
 }
+
 .age {
   width: 5rem;
 }
-.actionButton {
+.actionButtonDelete {
   font-size: 10px;
+  background-color: red;
+  margin-left: 2px;
+  color: #ffffff;
+  font-weight: bold;
+  border-radius: 5px;
+  font-weight: bold;
+}
+.actionButtonUpdate {
+  font-size: 10px;
+  background-color: rgb(212, 139, 29);
+  color: #ffffff;
+  font-weight: bold;
+  border-radius: 5px;
+  font-weight: bold;
 }

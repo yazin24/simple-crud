@@ -33,27 +33,14 @@ router.get('/', async(req, res) => {
 
 });
 
-router.put('/:id', async (req, res) => {
-    const { id } = req.params;
-    const { firstName, lastName, age } = req.body;
-  
-    try {
-      const updatedEmployee = await employeeModel.findByIdAndUpdate(
-        id,
-        { firstName, lastName, age },
-        { new: true }
-      );
-  
-      if (!updatedEmployee) {
-        return res.status(404).json({ error: 'Employee not found.' });
-      }
-  
-      res.json({ message: 'Employee updated successfully.', employee: updatedEmployee });
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ error: 'An error occurred while updating the employee.' });
-    }
-  });
+router.put('/:id', async (req, res)=> {
+
+    const employeeDetails = await employeeModel.findById(req.params.id);
+    employeeDetails.completed = req.body.completed;
+    await employeeDetails.save();
+    res.json(employeeDetails);
+
+});
 
 router.delete('/:id', async (req, res) => {
     const { id } = req.params;

@@ -60,7 +60,7 @@ const deleteEmployee = async (id) => {
             <td>{item.firstName}</td>
             <td>{item.lastName}</td>
             <td>{item.age}</td>
-            <td><button className='actionButton' onClick={navigate(`/update/${item._id}`)}>Update</button><button className='actionButton' onClick={() => deleteEmployee(item._id)}>Delete</button></td>
+            <td><button className='actionButtonUpdate'>Update</button><button className='actionButtonDelete' onClick={() => deleteEmployee(item._id)}>Delete</button></td>
           </tr>
           ))}
           
