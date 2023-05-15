@@ -46,7 +46,7 @@ const Update = ({ employee }) => {
         <input type='text' placeholder='Last Name' value={lastName} onChange={handleLastNameChange} required/>
         <br/>
         <input type='number' placeholder='Age' className='age' value={age} onChange={handleAgeChange} required/>
-        <br/>
+        
         <button type='submit' className='add'>
           Update
         </button>
