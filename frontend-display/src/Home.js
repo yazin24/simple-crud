@@ -1,6 +1,7 @@
 import React,{useState, useEffect} from 'react'
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
+import Update from './Update';
 
 const Home = () => {
 
@@ -8,6 +9,7 @@ const Home = () => {
   // const [lastName, setLastName] = useState('');
   // const [age, setAge] = useState('');
   const [data, setData] = useState([]);
+  const [selectedEmployee, setSelectedEmployee] = useState(null);
   
 
 useEffect(() => {
@@ -42,6 +44,10 @@ const deleteEmployee = async (id) => {
     }
 }
 
+const selectEmployee = (employee) => {
+  setSelectedEmployee(employee);
+};
+
   return (
     <div>
       <button className='addButton' onClick={addPage}>Add</button>
@@ -60,12 +66,15 @@ const deleteEmployee = async (id) => {
             <td>{item.firstName}</td>
             <td>{item.lastName}</td>
             <td>{item.age}</td>
-            <td><button className='actionButtonUpdate'>Update</button><button className='actionButtonDelete' onClick={() => deleteEmployee(item._id)}>Delete</button></td>
+            <td><button className='actionButtonUpdate' onClick={() => selectEmployee(item)}
+                >Update</button><button className='actionButtonDelete' onClick={() => deleteEmployee(item._id)}>Delete</button></td>
           </tr>
           ))}
           
         </tbody>
       </table>
+      <br/>
+      {selectedEmployee && <Update employee={selectedEmployee} />}
     </div>
   )
 }

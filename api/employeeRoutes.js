@@ -33,14 +33,29 @@ router.get('/', async(req, res) => {
 
 });
 
-router.put('/:id', async (req, res)=> {
+router.put('/:id', async (req, res) => {
+  try {
+    const employee = await employeeModel.findByIdAndUpdate(
+      req.params.id,
+      {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        age: req.body.age
+      },
+      { new: true }
+    );
 
-    const employeeDetails = await employeeModel.findById(req.params.id);
-    employeeDetails.completed = req.body.completed;
-    await employeeDetails.save();
-    res.json(employeeDetails);
+    if (!employee) {
+      return res.status(404).json({ error: 'Employee not found' });
+    }
 
+    res.json(employee);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Server error' });
+  }
 });
+
 
 router.delete('/:id', async (req, res) => {
     const { id } = req.params;
