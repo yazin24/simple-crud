@@ -41,11 +41,11 @@ const Update = ({ employee }) => {
   return (
     <div className='form'>
       <form onSubmit={handleFormSubmit}>
-        <input type='text' placeholder='First Name' value={firstName} onChange={handleFirstNameChange} />
+        <input type='text' placeholder='First Name' value={firstName} onChange={handleFirstNameChange} required/>
         <br/>
-        <input type='text' placeholder='Last Name' value={lastName} onChange={handleLastNameChange} />
+        <input type='text' placeholder='Last Name' value={lastName} onChange={handleLastNameChange} required/>
         <br/>
-        <input type='number' placeholder='Age' className='age' value={age} onChange={handleAgeChange} />
+        <input type='number' placeholder='Age' className='age' value={age} onChange={handleAgeChange} required/>
         <br/>
         <button type='submit' className='add'>
           Update
