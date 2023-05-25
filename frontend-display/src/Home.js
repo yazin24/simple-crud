@@ -5,9 +5,6 @@ import Update from './Update';
 
 const Home = () => {
 
-  // const [firstName, setFirstname] = useState('');
-  // const [lastName, setLastName] = useState('');
-  // const [age, setAge] = useState('');
   const [data, setData] = useState([]);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
   
@@ -63,8 +60,8 @@ const selectEmployee = (employee) => {
         <tbody>
           {data.map((item) => (
             <tr key = {item.id}>
-            <td>{item.firstName}</td>
-            <td>{item.lastName}</td>
+            <td>{item.first_name}</td>
+            <td>{item.last_name}</td>
             <td>{item.age}</td>
             <td><button className='actionButtonUpdate' onClick={() => selectEmployee(item)}
                 >Update</button><button className='actionButtonDelete' onClick={() => deleteEmployee(item._id)}>Delete</button></td>

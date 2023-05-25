@@ -2,34 +2,35 @@ import express from 'express';
 import mongoose from 'mongoose';
 import {employeeModel} from './employeeModel.js';
 
+
 const router = express.Router();
 
-router.post('/add', async (req, res) => {
+export const employeeRoutes = (db) => {
+
+  router.post('/add', async (req, res) => {
 
     const {firstName, lastName, age} = req.body;
 
-    const employee = await employeeModel.findOne({firstName, lastName, age});
+    db.query('INSERT INTO employees_details (first_name, last_name, age) VALUE (?, ?, ?)', [firstName, lastName, age], (err, result) =>{
+      if(err) {
+        console.log(err)
+      }else{
+        res.send('Values inserted!')
+      }
 
-    if(employee) {
-        console.log('Employee has already registered!');
-    }
-
-    const newEmployee = new employeeModel({firstName, lastName,age});
-
-    await newEmployee.save();
-
-   res.json({message: 'Employee Has been Registered!'});
+    });
 
 });
 
 router.get('/', async(req, res) => {
 
-    try {
-        const response = await employeeModel.find({});
-        res.json(response);
-    }catch(err){
+    db.query('SELECT * FROM employees_details', (err, result) => {
+      if(err) {
         console.error(err);
-    }
+      }else {
+        res.json(result)
+      }
+    })
 
 });
 
@@ -69,5 +70,6 @@ router.delete('/:id', async (req, res) => {
     }
   });
   
+  return router;
 
-export {router as employeeRouter}
+}

@@ -20,9 +20,9 @@ const Add = () => {
       navigate('/');
     }catch(err) {
       console.error(err)
-    }
+    };
   
-  }
+  };
 
   return (
     <div className='form'>
